@@ -5,6 +5,7 @@ $primary-bg: #0b0000;
 $text-color: #1d1d1d;
 $white: #fff;
 $red: red;
+$blue: blue;
 
 $font-family: "Lexend", Arial, Helvetica, sans-serif;
 
@@ -18,6 +19,11 @@ $font-family: "Lexend", Arial, Helvetica, sans-serif;
   align-items: $align;
 }
 
+@mixin img-default($width) {
+  width: $width;
+  height: auto;
+}
+
 /* ===============================
    BASE
 ================================ */
@@ -28,6 +34,7 @@ $font-family: "Lexend", Arial, Helvetica, sans-serif;
 body {
   margin: 0;
   font-family: $font-family;
+  font-size: clamp(14px, 1.5vw, 16px);
   color: $text-color;
 }
 
@@ -41,67 +48,43 @@ img {
 ================================ */
 .header {
   width: 100%;
-  height: 72px;
-  padding: 0 40px;
-  background: $primary-bg;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 20px;
+  background-color: $primary-bg;
+  @include flex-center(row, space-between, center);
+
+  &__menu {
+    width: 50px;
+    cursor: pointer;
+
+    &-icon {
+      @include img-default(100%);
+    }
+  }
+
+  &__logo {
+    width: 100px;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
 }
 
-/* Botón menú */
-.header__menu {
-  width: 36px;
-  cursor: pointer;
-}
-
-/* Logo */
-.header__logo {
-  width: 90px;
-}
-
-/* Acciones (carrito) */
-.header__actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* ===============================
-   NAVBAR (DESKTOP)
-================================ */
 .navbar {
   display: flex;
-  align-items: center;
-  gap: 28px;
 }
 
-/* Links */
 .nav__link {
   color: $white;
+  font-size: 1.5rem;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  position: relative;
-}
+  margin: 0 10px;
 
-/* Hover limpio tipo ecommerce real */
-.nav__link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 2px;
-  background: $white;
-  transition: width 0.3s ease;
+  &:hover {
+    color: $red;
+  }
 }
-
-.nav__link:hover::after {
-  width: 100%;
-}
-
 
 /* ===============================
    BANNER
@@ -111,37 +94,64 @@ img {
   text-align: center;
   background: url("../img/banner.png") center / cover no-repeat;
   color: $white;
+
+  &__title {
+    font-size: clamp(36px, 5vw, 66px);
+    margin: 10px;
+  }
+
+  &__text {
+    font-size: clamp(16px, 2.5vw, 24px);
+    opacity: 0.8;
+  }
 }
 
 /* ===============================
    PRODUCTS
 ================================ */
 .products {
-  width: 85%;
+  width: 80%;
   margin: 0 auto;
   padding: 30px 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
-}
 
-.products__item {
-  text-align: center;
-}
+  &__item {
+    text-align: center;
+    cursor: pointer;
+    transition: transform .2s ease;
 
-.products__image {
-  width: 200px;
-  margin: 0 auto 10px;
-}
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
 
-.add-cart {
-  margin-top: 10px;
-  padding: 10px 14px;
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  &__image {
+    width: 200px;
+    margin: 0 auto 10px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__price {
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .add-cart {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    width: fit-content;
+  }
 }
 
 /* ===============================
@@ -160,6 +170,7 @@ img {
   background: red;
   color: white;
   font-size: 12px;
+  font-weight: bold;
   border-radius: 50%;
   @include flex-center;
 }
@@ -174,24 +185,61 @@ img {
   padding: 20px;
   box-shadow: -10px 0 20px rgba(0,0,0,.2);
   display: none;
-  z-index: 2000;
   overflow-y: auto;
-  pointer-events: none;
+  z-index: 2000;
 
   &.show {
     display: block;
-    pointer-events: auto;
+  }
+
+  &__title {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+
+  &__image {
+    width: 60px;
+  }
+
+  &__price {
+    margin-left: auto;
+    font-weight: bold;
+  }
+
+  &__remove {
+    width: 20px;
+    cursor: pointer;
+
+    &-img {
+      width: 100%;
+    }
   }
 }
 
+/* ===============================
+   BOTÓN CERRAR CARRITO
+================================ */
 .cart__close {
   position: absolute;
   top: 15px;
   right: 20px;
   font-size: 26px;
+  font-weight: bold;
   cursor: pointer;
   display: none;
+  z-index: 3001;
+  color: #000;
 }
+
 
 /* ===============================
    BOTÓN ORDENAR
@@ -200,79 +248,131 @@ img {
   width: 100%;
   margin-top: 20px;
   padding: 14px;
-  background: #000;
-  color: #fff;
   border: none;
   border-radius: 8px;
+  background: #000;
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+
+  .label {
+    display: none;
+  }
+
+  .label-idle {
+    display: block;
+  }
+
+  &.is-sending {
+    background: #444;
+
+    .label-idle { display: none; }
+    .label-sending { display: block; }
+    .scene { opacity: 1; }
+  }
+
+  &.is-done {
+    background: #2ecc71;
+
+    .label-sending { display: none; }
+    .label-onway { display: block; }
+  }
 }
 
 /* ===============================
-   SIDE MENU (MÓVIL)
+   ESCENA
+================================ */
+.scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.road {
+  position: absolute;
+  bottom: 0;
+  width: 200%;
+  height: 40px;
+
+  rect { fill: #2b2b2b; }
+
+  .lane-mid rect {
+    fill: #eee;
+    animation: roadMove 2s linear infinite;
+  }
+
+  .lane-edge rect {
+    fill: #555;
+  }
+}
+
+.truck {
+  position: absolute;
+  bottom: -8px;
+  left: -160px;
+  width: 120px;
+}
+
+.order-btn.is-sending .truck {
+  animation: truckMove 3s linear forwards;
+}
+
+/* ===============================
+   ANIMACIONES
+================================ */
+@keyframes truckMove {
+  to { left: 110%; }
+}
+
+@keyframes roadMove {
+  to { transform: translateX(-60px); }
+}
+
+/* ===============================
+   SIDE MENU
 ================================ */
 .side-menu {
   position: fixed;
   top: 0;
   left: -320px;
-  width: 280px;
+  width: 300px;
   height: 100vh;
   background: #fff;
   padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,.3);
   transition: left .3s ease;
-  z-index: 4000;
+  z-index: 3000;
 
   &.show {
     left: 0;
   }
-}
 
-.close-menu {
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.side-menu__nav {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #000;
-    font-weight: 500;
-    position: relative;
-    padding-left: 12px;
-    transition: color .2s ease;
-  }
-
-  /* Hover suave */
-  a:hover {
-    color: #111;
-  }
-
-  /* LINK ACTIVO */
-  a.active {
-    font-weight: 700;
-  }
-
-  /* Indicador visual */
-  a.active::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 60%;
-    background: #000;
-    border-radius: 2px;
+  .close-menu {
+    font-size: 22px;
+    cursor: pointer;
+    margin-bottom: 20px;
   }
 }
 
+/* ===============================
+   SCROLLBAR
+================================ */
+.cart {
+  scrollbar-width: thin;
+  scrollbar-color: #999 #f1f1f1;
+}
+
+.cart::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cart::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
 
 /* ===============================
    RESPONSIVE
@@ -282,10 +382,15 @@ img {
 @media (max-width: 1024px) {
   .products {
     width: 95%;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cart {
     width: 380px;
+  }
+
+  .nav__link {
+    font-size: 1.2rem;
   }
 }
 
@@ -293,6 +398,10 @@ img {
 @media (max-width: 768px) {
   .navbar {
     display: none;
+  }
+
+  .header__menu {
+    display: block;
   }
 
   .products {
@@ -313,5 +422,24 @@ img {
 
   .cart__close {
     display: block;
+  }
+
+  .banner {
+    padding: 40px 15px;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+  .banner__title {
+    font-size: 32px;
+  }
+
+  .banner__text {
+    font-size: 14px;
+  }
+
+  .add-cart {
+    width: 100%;
   }
 }

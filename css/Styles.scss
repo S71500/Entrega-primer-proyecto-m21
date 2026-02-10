@@ -1,0 +1,317 @@
+/* ===============================
+   VARIABLES
+================================ */
+$primary-bg: #0b0000;
+$text-color: #1d1d1d;
+$white: #fff;
+$red: red;
+
+$font-family: "Lexend", Arial, Helvetica, sans-serif;
+
+/* ===============================
+   MIXINS
+================================ */
+@mixin flex-center($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+/* ===============================
+   BASE
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  color: $text-color;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.header {
+  width: 100%;
+  height: 72px;
+  padding: 0 40px;
+  background: $primary-bg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Botón menú */
+.header__menu {
+  width: 36px;
+  cursor: pointer;
+}
+
+/* Logo */
+.header__logo {
+  width: 90px;
+}
+
+/* Acciones (carrito) */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ===============================
+   NAVBAR (DESKTOP)
+================================ */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Links */
+.nav__link {
+  color: $white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+/* Hover limpio tipo ecommerce real */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: $white;
+  transition: width 0.3s ease;
+}
+
+.nav__link:hover::after {
+  width: 100%;
+}
+
+
+/* ===============================
+   BANNER
+================================ */
+.banner {
+  padding: 60px 20px;
+  text-align: center;
+  background: url("../img/banner.png") center / cover no-repeat;
+  color: $white;
+}
+
+/* ===============================
+   PRODUCTS
+================================ */
+.products {
+  width: 85%;
+  margin: 0 auto;
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.products__item {
+  text-align: center;
+}
+
+.products__image {
+  width: 200px;
+  margin: 0 auto 10px;
+}
+
+.add-cart {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===============================
+   CARRITO
+================================ */
+.cart-wrapper {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: 25px;
+  width: 20px;
+  height: 20px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  @include flex-center;
+}
+
+.cart {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  width: 480px;
+  height: calc(100vh - 100px);
+  background: #fff;
+  padding: 20px;
+  box-shadow: -10px 0 20px rgba(0,0,0,.2);
+  display: none;
+  z-index: 2000;
+  overflow-y: auto;
+  pointer-events: none;
+
+  &.show {
+    display: block;
+    pointer-events: auto;
+  }
+}
+
+.cart__close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 26px;
+  cursor: pointer;
+  display: none;
+}
+
+/* ===============================
+   BOTÓN ORDENAR
+================================ */
+.order-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===============================
+   SIDE MENU (MÓVIL)
+================================ */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  padding: 20px;
+  transition: left .3s ease;
+  z-index: 4000;
+
+  &.show {
+    left: 0;
+  }
+}
+
+.close-menu {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.side-menu__nav {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #000;
+    font-weight: 500;
+    position: relative;
+    padding-left: 12px;
+    transition: color .2s ease;
+  }
+
+  /* Hover suave */
+  a:hover {
+    color: #111;
+  }
+
+  /* LINK ACTIVO */
+  a.active {
+    font-weight: 700;
+  }
+
+  /* Indicador visual */
+  a.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: #000;
+    border-radius: 2px;
+  }
+}
+
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .products {
+    width: 95%;
+  }
+
+  .cart {
+    width: 380px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+
+  .products {
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .products__image {
+    width: 160px;
+  }
+
+  .cart {
+    top: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .cart__close {
+    display: block;
+  }
+}

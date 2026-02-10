@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/funtions.js" defer></script>
+    <title>Mujeres | Adidas</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__menu" id="menu-icon">
+            <img class="header__menu-icon" src="img/Icono menu.png" alt="Icono Menu">
+        </div>
+
+        <img class="header__logo" src="img/Logo Adidas.jpg" alt="Logo Adidas">
+
+        <nav class="navbar">
+            <a class="nav__link" href="index.html">Inicio</a>
+            <a class="nav__link" href="hombres.html">Hombres</a>
+            <a class="nav__link" href="mujeres.html">Mujeres</a>
+            <a class="nav__link" href="contacto.html">Contacto</a>
+        </nav>
+
+        <div class="header__actions">
+        <i class="cart-wrapper" id="cart-icon">
+        <img src="img/Icono Carrito.png" alt="Icono de Carrito">
+        <span class="cart-badge">0</span>
+
+        <section class="cart">
+            <span class="cart__close">✕</span>
+
+            <h2 class="cart__title">CARRITO</h2>
+
+            <div class="cart__items"></div>
+            <div class="cart__footer"></div>
+
+            <button class="order-btn" id="orderBtn" type="button">
+
+            <span class="label label-idle">Ordenar</span>
+            <span class="label label-sending">Enviando...</span>
+            <span class="label label-onway">Ya viene en camino</span>
+
+            <span class="scene" aria-hidden="true">
+
+                <svg class="road" viewBox="0 0 520 80" preserveAspectRatio="none">
+                <rect x="0" y="20" width="520" height="40" rx="12"></rect>
+
+                <g class="lane lane-mid">
+                    <rect x="20" y="39" width="40" height="2"></rect>
+                    <rect x="90" y="39" width="40" height="2"></rect>
+                    <rect x="160" y="39" width="40" height="2"></rect>
+                    <rect x="230" y="39" width="40" height="2"></rect>
+                    <rect x="300" y="39" width="40" height="2"></rect>
+                    <rect x="370" y="39" width="40" height="2"></rect>
+                    <rect x="440" y="39" width="40" height="2"></rect>
+                </g>
+
+                <g class="lane lane-edge">
+                    <rect x="0" y="26" width="520" height="2"></rect>
+                    <rect x="0" y="52" width="520" height="2"></rect>
+                </g>
+                </svg>
+
+                <svg class="truck" viewBox="0 0 300 160" aria-hidden="true">
+                <ellipse cx="150" cy="142" rx="120" ry="12" fill="rgba(0,0,0,.18)"/>
+
+                <rect x="30" y="50" width="150" height="60" rx="10"
+                        fill="#ffffff" stroke="#111" stroke-width="4"/>
+
+                <line x1="60" y1="55" x2="60" y2="105" stroke="#e5e5e5" stroke-width="3"/>
+                <line x1="100" y1="55" x2="100" y2="105" stroke="#e5e5e5" stroke-width="3"/>
+
+                <path
+                    d="M180 110V62c0-8 6-14 14-14h42c16 0 26 10 30 26l8 36H180z"
+                    fill="#ffffff" stroke="#111" stroke-width="4"
+                />
+
+                <rect x="202" y="62" width="32" height="22" rx="4"
+                        fill="#cfe8ff" stroke="#111" stroke-width="3"/>
+
+                <rect x="270" y="96" width="10" height="12" rx="2" fill="#ffd54f"/>
+
+                <circle cx="80" cy="118" r="18" fill="#111"/>
+                <circle cx="80" cy="118" r="10" fill="#666"/>
+                <circle cx="80" cy="118" r="4" fill="#bbb"/>
+
+                <circle cx="210" cy="118" r="18" fill="#111"/>
+                <circle cx="210" cy="118" r="10" fill="#666"/>
+                <circle cx="210" cy="118" r="4" fill="#bbb"/>
+                </svg>
+
+            </span>
+            </button>
+
+        </section>
+        </i>
+
+        </div>
+    </header>
+
+
+    <main>
+        <section class="banner">
+            <h2 class="banner__title">Productos Nuevos</h2>
+            <p class="banner__text">Conoce nuestros productos nuevos</p>
+        </section>
+
+        <section class="products">
+            <article class="products__item">
+                <img class="products__image" src="img/Chamarra.png" alt="Chamarra Mujer">
+                <h3 class="products__title">Chamarra Adidas para <br> mujer color carton</h3>
+                <p class="products__price">$1,000.00</p>
+                <button class="add-cart">Agregar</button>
+            </article>
+
+            <article class="products__item">
+                <img class="products__image" src="img/Leggings Adidas.png" alt="Leggings Adidas">
+                <h3 class="products__title">Leggings Adidas</h3>
+                <p class="products__price">$2,000.00</p>
+                <button class="add-cart">Agregar</button>
+            </article>
+
+            <article class="products__item">
+                <img class="products__image" src="img/Short Mujer.png" alt="Short Mujer">
+                <h3 class="products__title">Short Mujer</h3>
+                <p class="products__price">$2,300.00</p>
+                <button class="add-cart">Agregar</button>
+            </article>
+
+            <article class="products__item">
+                <img class="products__image" src="img/Sudadera Mujer.png" alt="Sudadera Mujer">
+                <h3 class="products__title">Sudadera Mujer</h3>
+                <p class="products__price">$1,000.00</p>
+                <button class="add-cart">Agregar</button>
+            </article>
+
+            <article class="products__item">
+                <img class="products__image" src="img/Top Deportivo.png" alt="Top Deportivo">
+                <h3 class="products__title">Top Deportivo</h3>
+                <p class="products__price">$2,000.00</p>
+                <button class="add-cart">Agregar</button>
+            </article>
+
+            <article class="products__item">
+                <img class="products__image" src="img/Tenis Mujer.png" alt="Tenis Mujer">
+                <h3 class="products__title">Tenis Mujer</h3>
+                <p class="products__price">$2,300.00</p>
+                <button class="add-cart">Agregar</button>
+            </article>
+
+            <article class="products__item">
+                <img class="products__image" src="img/Tenis Adidas Running.png" alt="Tenis Adidas Running">
+                <h3 class="products__title">Tenis Adidas Running</h3>
+                <p class="products__price">$1,000.00</p>
+                <button class="add-cart">Agregar</button>
+            </article>
+        </section>
+    </main>
+
+    <aside class="side-menu">
+        <span class="close-menu">✕</span>
+        <p>Menú</p>
+    </aside>
+
+</body>
+</html>
